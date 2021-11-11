@@ -6,8 +6,8 @@ import matplotlib
 #matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from tensorflow.python.framework.ops import disable_eager_execution
-disable_eager_execution()
-
+#disable_eager_execution()
+tf.config.run_functions_eagerly(True)
 tf.random.set_seed(42) # cheers for the community always use seed as 42
 
 HORIZON = 1
@@ -33,3 +33,4 @@ def model1_trainer(train_windows, test_windows, train_labels,test_labels,model_n
             batch_size=128,
             validation_data=(test_windows, test_labels),
             callbacks=[create_model_checkpoint(model_name=model_1.name)])
+    return model_1

@@ -26,6 +26,16 @@ def evaluate_preds(y_true, y_pred):
             "mape": mape.numpy(),
             "mase": mase.numpy()}
 
+def make_preds(model, input_data):
+    #print(input_data[0])
+    forecast = model.predict(input_data)
+    #print(forecast)
+    return tf.squeeze(forecast)
+
+
+def get_model_path(model_name):
+
+    return os.path.join(os.getcwd(), 'model_experiments',model_name)
 
 def evaluate_preds2(y_true, y_pred):
     y_true = tf.cast(y_true, dtype=tf.float32)
@@ -95,7 +105,7 @@ def make_train_test_splits(windows, labels, test_split=0.2):
 
 
 def data_preparation_for_nbeats(df,WINDOW_SIZE = 7):
-    waves_nbeats = df_m5_copy.copy()
+    waves_nbeats = df.copy()
     for i in range(WINDOW_SIZE):
         waves_nbeats[f"waveperiod+{i+1}"] = waves_nbeats["waveperiod"].shift(periods=i+1)
     waves_nbeats = waves_nbeats.filter(like='waveperiod')

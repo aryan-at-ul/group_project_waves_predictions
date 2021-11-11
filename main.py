@@ -87,6 +87,10 @@ def load_data(station,csv_like):
     print("default index created on this columns: ",df.index.names)
     for one_group in df_groups:
         print(colored(f"starting for station {one_group[0]}", 'green', 'on_red'))
+        ch = input(colored(f"Press 1 to continue and 0 to exit",'red','on_green'))
+        if int(ch) != 1:
+            print("EXIT...")
+            sys.exit()
         df = generate_time_series(one_group[1])
         df = impute_missing_data(df,method = "time")
         do_train_test_if_model_does_not_exit(df,one_group[0])
@@ -95,7 +99,7 @@ def load_data(station,csv_like):
 if __name__ == "__main__":
 
     if len(sys.argv) < 4:
-        rasise("arguments : python main.py m1 p poly hour")
+        raise("arguments : python main.py m1 p poly hour")
     station = sys.argv[1]
     typ = sys.argv[2]
     impute_method = sys.argv[3]

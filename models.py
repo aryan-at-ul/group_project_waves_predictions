@@ -34,3 +34,29 @@ def model1_trainer(train_windows, test_windows, train_labels,test_labels,model_n
             validation_data=(test_windows, test_labels),
             callbacks=[create_model_checkpoint(model_name=model_1.name)])
     return model_1
+
+
+
+def model2_trainer(train_windows, test_windows, train_labels,test_labels,model_name,hyper_paramas):
+    """:
+    training 2nd type model here
+    """
+
+    model_2 = tf.keras.Sequential([
+                layers.Dense(128, activation="relu"),
+                layers.Dense(HORIZON)
+            ], name=f"{model_name}")
+    model_2.compile(loss="mae",
+            optimizer=tf.keras.optimizers.Adam())
+
+    model_2.fit(train_windows,
+            train_labels,
+            batch_size=128,
+            epochs=100,
+            verbose=0,
+            validation_data=(test_windows, test_labels),
+            callbacks=[create_model_checkpoint(model_name=model_2.name)])
+
+    return model_2
+
+

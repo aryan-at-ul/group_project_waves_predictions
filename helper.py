@@ -17,8 +17,16 @@ all_models = {"model_1":{"type":"sequential",
                          "window_size":7,
                          "activation":"relu",
                          "epoch":100,
-                         "function_to_call":"model1_trainer(train_windows, test_windows, train_labels,test_labels,model_name,hyper_paramas)"}
-             }
+                         "function_to_call":"model1_trainer(train_windows, test_windows, train_labels,test_labels,model_name,hyper_paramas)"},
+              "model_2":{"type":"sequential conv2",
+                         "horizon":1,
+                         "window_size":7,
+                         "activation":"relu",
+                         "epoch":100,
+                         "function_to_call":"model2_trainer(train_windows, test_windows, train_labels,test_labels,model_name,hyper_paramas)"
+
+              }
+              }
 
 WINDOW_SIZE = 7
 HORIZON = 1
@@ -55,7 +63,7 @@ def do_train_test_if_model_does_not_exit(df,station_name):
                 print("model evaluation:", model.evaluate(test_windows,test_labels))
                 model_preds = make_preds(model,input_data = test_windows)
                 model_results = evaluate_preds(y_true=tf.squeeze(test_labels),y_pred = model_preds)
-                print(colored(f"model performace [newly trained] : {model_results}",'red','on_yellow'))
+                print(colored(f"model performace {model_name} [newly trained] : {model_results}",'red','on_yellow'))
             else:
                 print(colored(f"you will be prompted with existing model paramteres for : {station_name}, model : {model} for {typ}", 'blue', 'on_white'))
                 model_path = get_model_path(model_name)

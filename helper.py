@@ -39,10 +39,10 @@ def get_train_test_splits(timesteps,timedata,extra):
 
 
 def do_train_test_if_model_does_not_exit(df,station_name):
-
+    result_to_write = []
     for typ in typ_for_models:
-
         for model in all_models.keys():
+            result_to_write  = []
             choice = -1
             model_name = f"{model}_{station_name}_{typ}"
             timesteps = df.index.to_numpy()
@@ -68,7 +68,12 @@ def do_train_test_if_model_does_not_exit(df,station_name):
                 print(colored(f"you will be prompted with existing model paramteres for : {station_name}, model : {model} for {typ}", 'blue', 'on_white'))
                 model_path = get_model_path(model_name)
                 model = tf.keras.models.load_model(model_path)
+                print("test window",test_windows)
                 model_preds = make_preds(model,input_data = test_windows)
+                print("Predictions",model_preds)
+                print("Ylabels",test_labels)
                 model_results = evaluate_preds(y_true=tf.squeeze(test_labels),y_pred = model_preds)
+                result_to_write.append(model_results)
                 print(colored(f"model performace : {model_results}",'red','on_yellow'))
 
+            write_results_to_csv(result_to_write,station_name,typ,model_name)

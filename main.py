@@ -55,7 +55,9 @@ def impute_missing_data(df,method = "time"):
     df = df.interpolate(method=method,axis = 0).ffill().bfill()
     imputed = df[na_indexs]
     not_imputed = df[~na_indexs]
-    df.to_csv('./imputed_data/'+station_name+'.csv')
+    df_temp = df.copy()
+    df_temp["date"] = df_temp.index
+    df_temp.to_csv('./imputed_data/'+station_name+'.csv',index=False)
     plot_imputed_data_vs_present_data(df,imputed,not_imputed,station_name)
     return df
 

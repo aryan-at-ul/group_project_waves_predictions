@@ -2,6 +2,19 @@ import os
 import sys
 import tensorflow as tf
 import numpy as np
+import pandas as pd
+
+def write_results_to_csv(result_list,station_name,typ,model):
+    """
+    write df created from result set to a csv file
+    """
+    result = []
+    for one in result_list:
+        result.append([station_name,one['rmse'],typ,model])
+    df = pd.DataFrame(result,
+                  columns = ['station_name' , 'rmse','on_col','model_name'])
+
+    df.to_csv('result_compare.csv', mode='a', header=False,index = False)
 
 def mean_absolute_scaled_error(y_true, y_pred):
   mae = tf.reduce_mean(tf.abs(y_true - y_pred))

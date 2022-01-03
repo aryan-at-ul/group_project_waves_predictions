@@ -2,7 +2,7 @@ import imageio
 import os
 import sys
 
-data_dir = "./M6/period"
+data_dir = "./M1/period"
 all_files = []
 for root, dirs, files in os.walk(data_dir):
     for filename in files:
@@ -17,4 +17,4 @@ for root, dirs, files in os.walk(data_dir):
 images = []
 for filename in all_files:
     images.append(imageio.imread(filename))
-imageio.mimsave('m6_period_movie.gif', images,fps = 1)
+imageio.mimsave('m1_period_movie.gif', images,fps = 1)

@@ -11,3 +11,5 @@ to-do
 
 
 **N-beats paper link:  https://arxiv.org/abs/1905.10437.**
+
+**link to final slides :  https://bit.ly/3taGTbD**  

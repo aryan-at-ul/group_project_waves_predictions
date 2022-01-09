@@ -8,3 +8,6 @@ python main.py m1 p poly daily
 deps are not exact
 
 to-do
+
+
+**N-beats paper link:  https://arxiv.org/abs/1905.10437.**

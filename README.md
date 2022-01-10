@@ -5,5 +5,11 @@ for generic script , make a new virtualenv in python3.8 and then do a pip instal
 
 python main.py m1 p poly daily
 
-p[status] review pending , deps are not exact
+deps are not exact
+
 to-do
+
+
+**N-beats paper link:  https://arxiv.org/abs/1905.10437.**
+
+**link to final slides :  https://bit.ly/3taGTbD**  

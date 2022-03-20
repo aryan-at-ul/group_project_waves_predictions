@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from tensorflow.python.framework.ops import disable_eager_execution
 #disable_eager_execution()
 tf.config.run_functions_eagerly(True)
-tf.random.set_seed(42) # cheers for the community always use seed as 42
+tf.random.set_seed(42) 
 
 HORIZON = 1
 WINDOW = 7
